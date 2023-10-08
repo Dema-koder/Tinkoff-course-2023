@@ -1,5 +1,6 @@
-package hw1;
+package edu.hw1;
 
+import edu.hw1.Task6;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

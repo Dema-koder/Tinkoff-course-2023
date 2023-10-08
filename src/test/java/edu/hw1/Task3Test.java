@@ -1,11 +1,11 @@
-package hw1;
+package edu.hw1;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Random;
-import static hw1.Task3.isNested;
-import static hw1.Task3.maxOfArray;
-import static hw1.Task3.minOfArray;
+import static edu.hw1.Task3.isNested;
+import static edu.hw1.Task3.maxOfArray;
+import static edu.hw1.Task3.minOfArray;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Task3Test {

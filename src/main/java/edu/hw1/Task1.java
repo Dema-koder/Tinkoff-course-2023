@@ -1,10 +1,10 @@
-package hw1;
+package edu.hw1;
 
-import java.util.Arrays;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@SuppressWarnings({"hideutilityclassconstructor", "constantname", "uncommentedmain", "returncount"})
 public class Task1 {
     private static final long quantitySecInMin = 60;
     private static final Logger LOGGER = LogManager.getLogger();
@@ -38,8 +38,8 @@ public class Task1 {
         }
         Long mx = (Long.MAX_VALUE - Long.parseLong(parseString[1])) / quantitySecInMin;
         String mxStr = mx.toString();
-        if ((parseString[0].length() > mxStr.length()) ||
-            (parseString[0].length() == mxStr.length() && parseString[0].compareTo(mxStr) > 0)) {
+        if ((parseString[0].length() > mxStr.length())
+            || (parseString[0].length() == mxStr.length() && parseString[0].compareTo(mxStr) > 0)) {
             LOGGER.error("Quantity of seconds is higher than variable type long");
             return false;
         }

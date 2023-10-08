@@ -1,10 +1,10 @@
-package hw1;
+package edu.hw1;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
-import static hw1.Task1.minutesToSeconds;
+import static edu.hw1.Task1.minutesToSeconds;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Task1Test {
@@ -13,6 +13,7 @@ class Task1Test {
     void correctStrings() {
         for (int i = 0; i < 1000; i++) {
             Random random = new Random();
+
             Long answer = random.nextLong(Long.MAX_VALUE);
             Long minutes = answer / 60;
             Long seconds = answer % 60;

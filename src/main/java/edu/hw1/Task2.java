@@ -1,9 +1,10 @@
-package hw1;
+package edu.hw1;
 
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@SuppressWarnings({"uncommentedmain", "magicnumber", "hideutilityclassconstructor"})
 public class Task2 {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -16,11 +17,11 @@ public class Task2 {
 
     static int countDigits(Long num) {
         LOGGER.info("Take the number " + num);
-        num = Math.abs(num);
+        Long num2 = Math.abs(num);
         int count = 0;
-        while (num > 0) {
+        while (num2 > 0) {
             count++;
-            num /= 10;
+            num2 /= 10;
         }
         return count;
     }

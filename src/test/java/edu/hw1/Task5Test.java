@@ -1,13 +1,13 @@
-package hw1;
+package edu.hw1;
 
+import edu.hw1.Task5;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Random;
-import static hw1.Task5.buildNewNumber;
-import static hw1.Task5.isPalindrome;
-import static hw1.Task5.isValidNumber;
+import static edu.hw1.Task5.buildNewNumber;
+import static edu.hw1.Task5.isPalindrome;
+import static edu.hw1.Task5.isValidNumber;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Task5Test {

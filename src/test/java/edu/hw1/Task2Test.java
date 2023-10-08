@@ -1,9 +1,9 @@
-package hw1;
+package edu.hw1;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Random;
-import static hw1.Task2.countDigits;
+import static edu.hw1.Task2.countDigits;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Task2Test {
