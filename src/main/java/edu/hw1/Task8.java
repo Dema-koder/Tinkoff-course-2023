@@ -9,7 +9,7 @@ public class Task8 {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j] == 1) {
-                    for (int l = 0; l < 8; l++) {
+                    for (int l = 0; l < board.length; l++) {
                         if (i + FIRST[l] >= 0 && i + FIRST[l] < board.length && j + SECOND[l] >= 0
                             && j + SECOND[l] < board.length) {
                             if (board[i + FIRST[l]][j + SECOND[l]] == 1) {
