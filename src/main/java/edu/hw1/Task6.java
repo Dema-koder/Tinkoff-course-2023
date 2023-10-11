@@ -7,10 +7,11 @@ import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("hideutilityclassconstructor")
 public class Task6 {
-
+    private static final Integer KAPREKAR_CONST = 6174;
+    private static final Integer DEC_BASE = 10;
+    private static final Integer NEEDED_SIZE = 4;
     private static final Logger LOGGER = LogManager.getLogger();
 
-    @SuppressWarnings("magicnumber")
     public static int countK(Integer num) {
         if (!isValidNumber(num)) {
             return -1;
@@ -23,16 +24,15 @@ public class Task6 {
             int num1 = descendingOrder(num3);
             LOGGER.info(num + " : " + num1 + " - " + num2 + " = " + (num1 - num2));
             num3 = num1 - num2;
-            if (num3.equals(6174)) {
+            if (num3.equals(KAPREKAR_CONST)) {
                 return ans;
             }
         }
     }
 
-    @SuppressWarnings("magicnumber")
     static boolean isValidNumber(Integer num) {
         String res = num.toString();
-        if (res.length() != 4) {
+        if (res.length() != NEEDED_SIZE) {
             return false;
         }
         boolean ok = false;
@@ -46,45 +46,43 @@ public class Task6 {
         return ok;
     }
 
-    @SuppressWarnings("magicnumber")
     static Integer ascendingOrder(Integer cur) {
         LOGGER.info("Получили число :" + cur);
-        Integer[] nums = new Integer[4];
+        Integer[] nums = new Integer[NEEDED_SIZE];
         int k = 0;
         Integer num = cur;
-        for (int i = 0; i < 4; i++) {
-            nums[k] = num % 10;
+        for (int i = 0; i < NEEDED_SIZE; i++) {
+            nums[k] = num % DEC_BASE;
             k++;
-            num /= 10;
+            num /= DEC_BASE;
         }
         Arrays.sort(nums);
         k = 1;
         Integer ans = 0;
-        for (int i = 3; i >= 0; i--) {
+        for (int i = NEEDED_SIZE - 1; i >= 0; i--) {
             ans += k * nums[i];
-            k *= 10;
+            k *= DEC_BASE;
         }
         LOGGER.info("Ответ " + ans);
         return ans;
     }
 
-    @SuppressWarnings("magicnumber")
     static Integer descendingOrder(Integer cur) {
         Integer num = cur;
         LOGGER.info("Получили число " + num);
-        Integer[] nums = new Integer[4];
+        Integer[] nums = new Integer[NEEDED_SIZE];
         int k = 0;
-        for (int i = 0; i < 4; i++) {
-            nums[k] = num % 10;
+        for (int i = 0; i < NEEDED_SIZE; i++) {
+            nums[k] = num % DEC_BASE;
             k++;
-            num /= 10;
+            num /= DEC_BASE;
         }
         Arrays.sort(nums, Comparator.reverseOrder());
         k = 1;
         Integer ans = 0;
-        for (int i = 3; i >= 0; i--) {
+        for (int i = NEEDED_SIZE - 1; i >= 0; i--) {
             ans += k * nums[i];
-            k *= 10;
+            k *= DEC_BASE;
         }
         LOGGER.info("Число в убывающем порядке: " + ans);
         return ans;

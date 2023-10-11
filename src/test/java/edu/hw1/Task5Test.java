@@ -1,6 +1,5 @@
 package edu.hw1;
 
-import edu.hw1.Task5;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,15 +14,15 @@ class Task5Test {
     @Test
     @DisplayName("Основной функционал")
     void isPalindromeDescendantTest() {
-        assertEquals(true, Task5.isPalindromeDescendant(11211230));
-        assertEquals(true, Task5.isPalindromeDescendant(13001120));
+        assertTrue(Task5.isPalindromeDescendant(11211230));
+        assertTrue(Task5.isPalindromeDescendant(13001120));
     }
 
     @Test
     @DisplayName("Проверка на корректность числа")
     void isValidNumberTest() {
         Integer num = 5;
-        assertEquals(false, isValidNumber(num));
+        assertFalse(isValidNumber(num));
     }
 
     @Test
@@ -39,7 +38,7 @@ class Task5Test {
             String tt = new String(t);
             String res = s + tt;
             num = Integer.parseInt(res);
-            assertEquals(true, isPalindrome(num));
+            assertTrue(isPalindrome(num));
         }
     }
 

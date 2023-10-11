@@ -4,42 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Random;
 import static edu.hw1.Task3.isNested;
-import static edu.hw1.Task3.maxOfArray;
-import static edu.hw1.Task3.minOfArray;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Task3Test {
-    @Test
-    @DisplayName("Минимум массива")
-    void minOfArrayTest() {
-        for (int j = 0; j < 1000; j++) {
-            Random random = new Random();
-            long answer = random.nextLong(10000);
-            int n = random.nextInt(5) + 2;
-            Long[] arr = new Long[n + 1];
-            arr[n] = answer;
-            for (int i = 0; i < n; i++) {
-                arr[i] = random.nextLong(1000000) + answer + 1;
-            }
-            assertEquals(answer, minOfArray(arr));
-        }
-    }
-
-    @Test
-    @DisplayName("Максимум массива")
-    void maxOfArrayTest() {
-        for (int j = 0; j < 1000; j++) {
-            Random random = new Random();
-            long answer = random.nextLong(10000);
-            int n = random.nextInt(5) + 2;
-            Long[] arr = new Long[n + 1];
-            arr[n] = answer;
-            for (int i = 0; i < n; i++) {
-                arr[i] = random.nextLong(answer);
-            }
-            assertEquals(answer, maxOfArray(arr));
-        }
-    }
 
     @Test
     @DisplayName("Проверка вложенности")

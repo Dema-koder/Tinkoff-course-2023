@@ -4,8 +4,9 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@SuppressWarnings({"uncommentedmain", "magicnumber", "hideutilityclassconstructor"})
+@SuppressWarnings({"uncommentedmain", "hideutilityclassconstructor"})
 public class Task2 {
+    private static final Integer DIGIT_BASE = 10;
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static void main(String[] args) {
@@ -21,7 +22,7 @@ public class Task2 {
         int count = 0;
         while (num2 > 0) {
             count++;
-            num2 /= 10;
+            num2 /= DIGIT_BASE;
         }
         return count;
     }

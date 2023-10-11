@@ -6,7 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings({"hideutilityclassconstructor", "constantname", "uncommentedmain", "returncount"})
 public class Task1 {
-    private static final long quantitySecInMin = 60;
+    private static final long QUANTITY_SEC_IN_MIN = 60;
+    private static final Integer NEEDED_LEN = 2;
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static void main(String[] args) {
@@ -19,7 +20,7 @@ public class Task1 {
     static boolean checkCorrectnessOfString(String str) {
         LOGGER.info("Check correctness of the string: " + str);
         String[] parseString = str.split(":");
-        if (parseString.length != 2) {
+        if (parseString.length != NEEDED_LEN) {
             LOGGER.error("No colon or many of them");
             return false;
         }
@@ -32,11 +33,11 @@ public class Task1 {
                 return false;
             }
         }
-        if (Long.parseLong(parseString[1]) > quantitySecInMin) {
+        if (Long.parseLong(parseString[1]) > QUANTITY_SEC_IN_MIN) {
             LOGGER.error("Incorrect quantity of seconds");
             return false;
         }
-        Long mx = (Long.MAX_VALUE - Long.parseLong(parseString[1])) / quantitySecInMin;
+        Long mx = (Long.MAX_VALUE - Long.parseLong(parseString[1])) / QUANTITY_SEC_IN_MIN;
         String mxStr = mx.toString();
         if ((parseString[0].length() > mxStr.length())
             || (parseString[0].length() == mxStr.length() && parseString[0].compareTo(mxStr) > 0)) {
@@ -55,6 +56,6 @@ public class Task1 {
         String[] parseString = s.split(":");
         long minutes = Long.parseLong(parseString[0]);
         long seconds = Long.parseLong(parseString[1]);
-        return minutes * quantitySecInMin + seconds;
+        return minutes * QUANTITY_SEC_IN_MIN + seconds;
     }
 }

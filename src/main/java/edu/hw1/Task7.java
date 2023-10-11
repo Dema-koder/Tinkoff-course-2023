@@ -35,7 +35,7 @@ public class Task7 {
         return ans;
     }
 
-    static String getBinary(Integer cur) {
+    protected static String getBinary(Integer cur) {
         Integer num = cur;
         ArrayList<Integer> arr = new ArrayList<Integer>();
         while (num > 0) {
@@ -54,7 +54,7 @@ public class Task7 {
         return ans;
     }
 
-    static Integer fromBinaryToDecimal(String bin) {
+    protected static Integer fromBinaryToDecimal(String bin) {
         int k = 1;
         int ans = 0;
         for (int i = bin.length() - 1; i >= 0; i--) {

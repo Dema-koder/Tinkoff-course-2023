@@ -1,6 +1,7 @@
 package edu.hw1;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,27 +27,11 @@ public class Task3 {
         LOGGER.info("Answer: " + isNested(arr1, arr2));
     }
 
-    static Long minOfArray(Long[] arr) {
-        LOGGER.info("Find minimum in " + Arrays.toString(arr));
-        long ans = Long.MAX_VALUE;
-        for (Long aLong : arr) {
-            ans = Math.min(ans, aLong);
-        }
-        LOGGER.info("Minimum is equal " + ans);
-        return ans;
-    }
-
-    static Long maxOfArray(Long[] arr) {
-        LOGGER.info("Find maximum in " + Arrays.toString(arr));
-        long ans = Long.MIN_VALUE;
-        for (Long aLong : arr) {
-            ans = Math.max(ans, aLong);
-        }
-        LOGGER.info("Maximum is equal " + ans);
-        return ans;
-    }
-
     static boolean isNested(Long[] arr1, Long[] arr2) {
-        return minOfArray(arr1) > minOfArray(arr2) && maxOfArray(arr1) < maxOfArray(arr2);
+        Long minOfArray1 = Arrays.stream(arr1).min(Comparator.naturalOrder()).get();
+        Long minOfArray2 = Arrays.stream(arr2).min(Comparator.naturalOrder()).get();
+        Long maxOfArray1 = Arrays.stream(arr1).max(Comparator.naturalOrder()).get();
+        Long maxOfArray2 = Arrays.stream(arr2).max(Comparator.naturalOrder()).get();
+        return minOfArray1 > minOfArray2 && maxOfArray1 < maxOfArray2;
     }
 }
