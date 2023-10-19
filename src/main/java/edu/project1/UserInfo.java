@@ -12,6 +12,8 @@ public class UserInfo {
 
     public UserInfo() {
         letters = new char[ALPHABET];
+        doneMistakes = 0;
+        doneAttempts = 0;
     }
 
     public void doMistake() {

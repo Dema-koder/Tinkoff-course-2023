@@ -1,13 +1,9 @@
 package edu.project1;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
-    //public static final Logger LOGGER = LogManager.getLogger();
-    private static final Scanner scanner = new Scanner(System.in);
     private static final int DEFAULT_ATTEMPTS_NUMBER = 5;
     private static Dictionary dictionary = new Dictionary();
     private static UserInfo user;
@@ -23,14 +19,8 @@ public class Game {
         Arrays.fill(state, '*');
     }
 
-    public static void rules() {
-        System.out.print(
-            "Перед вами игра виселица. Вам нужно угадать слово из " + answer.length() +
-                " букв.\nСлово состоит только из строчных анлийсксих букв.\n" +
-                "Ваша задача вводить по одному строчному символу английского алфавита.\n" +
-                "Если вы введете больше 1 символа то игра завершится.\n" +
-                "Если вы введете какой либо другой символ игра завершится.\n" +
-                "Также вы можете завершить игру нажав команду Ctrl+D.\nУдачи!\n\n");
+    public static String getAnswer() {
+        return answer;
     }
 
     public static int getMaxAttempts() {
@@ -45,41 +35,7 @@ public class Game {
         return state;
     }
 
-    private String letterRequest() {
-        System.out.print("Угадай букву: ");
-        String letter = "scd";
-        if (!scanner.hasNextLine()) {
-            return letter;
-        }
-        letter = scanner.nextLine();
-        return letter;
-    }
-
-    public char getchar() {
-        String line = letterRequest();
-        if (line.length() > 1) {
-            return 'Q';
-        }
-        return line.charAt(0);
-    }
-
-    public boolean checkLetter(char letter) {
-        if (letter < 'a' || letter > 'z') {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isEnd() {
-        for (int i = 0; i < state.length; i++) {
-            if (state[i] == '*') {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isMistake(char letter) {
+    protected boolean updateState(char letter) {
         boolean check = false;
         for (int i = 0; i < answer.length(); i++) {
             if (answer.charAt(i) == letter) {
@@ -87,32 +43,71 @@ public class Game {
                 check = true;
             }
         }
-        if (check == false) {
+        return check;
+    } // написал тесты
+
+    private String letterRequest() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Угадай букву: ");
+        String line = new String();
+        try {
+            line = scanner.nextLine();
+        } catch (Exception e) {
+            System.out.println("Завершение игры!");
+            System.exit(0);
+        }
+        return line;
+    } // не понятно как тестить
+
+    protected boolean checkLetter(char letter) {
+        if (letter < 'a' || letter > 'z') {
+            return false;
+        }
+        return true;
+    } // нет смысла тестить
+
+    public static void rules() {
+        System.out.print(
+            "Перед вами игра виселица. Вам нужно угадать слово из " + answer.length() +
+                " букв.\nСлово состоит только из строчных анлийсксих букв.\n" +
+                "Ваша задача вводить по одному строчному символу английского алфавита.\n" +
+                "Если вы введете больше 1 символа то игра завершится.\n" +
+                "Если вы введете какой либо другой символ игра завершится.\n" +
+                "Также вы можете завершить игру нажав команду Ctrl+D.\nУдачи!\n\n");
+    } // простой функционал, не надо тестить
+
+    public Request getChar() {
+        String line = letterRequest();
+        if (line.length() > 1) {
+            return new Request.Repeat();
+        }
+        if (!checkLetter(line.charAt(0))) {
+            return new Request.Repeat();
+        }
+        return makeRequest(line.charAt(0));
+    } // простой функционал основаный на других функциях, нет смысла тестить
+
+    protected Request makeRequest(char letter) {
+        boolean check = updateState(letter);
+        boolean isEnd = (Arrays.toString(state)).contains(String.valueOf('*'));
+        if (!check) {
             user.doMistake();
         }
-        return check;
-    }
-
-    public Request makeRequest(char letter) {
-        boolean check = isMistake(letter);
-        if (!checkLetter(letter)) {
-            return new Request.Break();
-        }
-        if (!isEnd() && user.getDoneMistakes() == maxAttempts) {
+        if (isEnd && user.getDoneMistakes() == maxAttempts) {
             return new Request.Defeat();
         }
-        if (check && isEnd()) {
+        if (check && !isEnd) {
             return new Request.Win();
         }
-        if (check && !isEnd()) {
+        if (check && isEnd) {
             return new Request.SuccessfulRequest();
         }
         return new Request.FailedRequest();
-    }
+    } // написал тесты
 
     public void checkRequestType(Request request) {
-        if (request instanceof Request.Break || request instanceof Request.Win || request instanceof Request.Defeat) {
+        if (request instanceof Request.Win || request instanceof Request.Defeat) {
             System.exit(0);
         }
-    }
+    } // простой функционал, можно не тестить
 }

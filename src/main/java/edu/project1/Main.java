@@ -5,8 +5,7 @@ public class Main {
         Game game = new Game();
         game.rules();
         while (true) {
-            char letter = game.getchar();
-            Request request = game.makeRequest(letter);
+            Request request = game.getChar();
             request.message(game.getState());
             game.checkRequestType(request);
         }
