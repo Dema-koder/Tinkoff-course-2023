@@ -1,10 +1,5 @@
 package edu.hw2;
 
-import edu.hw2.Expr.Addition;
-import edu.hw2.Expr.Constant;
-import edu.hw2.Expr.Exponent;
-import edu.hw2.Expr.Multiplication;
-import edu.hw2.Expr.Negate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

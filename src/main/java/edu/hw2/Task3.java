@@ -96,11 +96,10 @@ public class Task3 {
 
         void tryExecute(String command) {
             for (int i = 0; i < maxAttempts; i++) {
-                try {
-                    Connection connection = manager.getConnection();
+                try (Connection connection = manager.getConnection()) {
                     connection.execute(command);
                     return;
-                } catch (ConnectionException exception) {
+                } catch (Exception exception) {
                     LOGGER.error("Ошибка соединения. Попытка " + (i + 1) + " из " + maxAttempts);
                     if (i == maxAttempts - 1) {
                         throw new ConnectionException("Не удалось выполнить команду", exception);
