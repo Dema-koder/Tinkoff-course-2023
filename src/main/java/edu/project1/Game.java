@@ -80,10 +80,10 @@ public class Game {
     public Request getChar() {
         String line = letterRequest();
         if (line.length() > 1) {
-            return new Repeat();
+            return new Request.Repeat();
         }
         if (!checkLetter(line.charAt(0))) {
-            return new Repeat();
+            return new Request.Repeat();
         }
         return makeRequest(line.charAt(0));
     } // простой функционал основаный на других функциях, нет смысла тестить
@@ -95,19 +95,19 @@ public class Game {
             user.doMistake();
         }
         if (isEnd && user.getDoneMistakes() == maxAttempts) {
-            return new Defeat();
+            return new Request.Defeat();
         }
         if (check && !isEnd) {
-            return new Win();
+            return new Request.Win();
         }
         if (check && isEnd) {
-            return new SuccessfulRequest();
+            return new Request.SuccessfulRequest();
         }
-        return new FailedRequest();
+        return new Request.FailedRequest();
     } // написал тесты
 
     public void checkRequestType(Request request) {
-        if (request instanceof Win || request instanceof Defeat) {
+        if (request instanceof Request.Win || request instanceof Request.Defeat) {
             System.exit(0);
         }
     } // простой функционал, можно не тестить
