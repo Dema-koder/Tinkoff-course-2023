@@ -27,7 +27,7 @@ class GameTest {
             Game game = new Game();
             String answer = game.getAnswer();
             if (!answer.contains(String.valueOf(i))) {
-                assertEquals(new Request.FailedRequest(), game.makeRequest(i));
+                assertEquals(new FailedRequest(), game.makeRequest(i));
             }
         }
     }
@@ -39,7 +39,7 @@ class GameTest {
             Game game = new Game();
             String answer = game.getAnswer();
             if (answer.contains(String.valueOf(i))) {
-                assertEquals(new Request.SuccessfulRequest(), game.makeRequest(i));
+                assertEquals(new SuccessfulRequest(), game.makeRequest(i));
             }
         }
     }
@@ -68,7 +68,7 @@ class GameTest {
                 }
             }
         }
-        assertEquals(new Request.Win(), game.makeRequest(letter));
+        assertEquals(new Win(), game.makeRequest(letter));
     }
 
     @Test
@@ -95,6 +95,6 @@ class GameTest {
                 maxAttempts--;
             }
         }
-        assertEquals(new Request.Defeat(), game.makeRequest(letter));
+        assertEquals(new Defeat(), game.makeRequest(letter));
     }
 }

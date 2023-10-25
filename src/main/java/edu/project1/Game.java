@@ -60,6 +60,13 @@ public class Game {
         return line;
     } // не понятно как тестить
 
+    protected boolean checkLetter(char letter) {
+        if (letter < 'a' || letter > 'z') {
+            return false;
+        }
+        return true;
+    } // нет смысла тестить
+
     public static void rules() {
         System.out.print(
             "Перед вами игра виселица. Вам нужно угадать слово из " + answer.length()
@@ -73,10 +80,10 @@ public class Game {
     public Request getChar() {
         String line = letterRequest();
         if (line.length() > 1) {
-            return new Request.Repeat();
+            return new Repeat();
         }
-        if (line.charAt(0) < 'a' || line.charAt(0) > 'z') {
-            return new Request.Repeat();
+        if (!checkLetter(line.charAt(0))) {
+            return new Repeat();
         }
         return makeRequest(line.charAt(0));
     } // простой функционал основаный на других функциях, нет смысла тестить
@@ -88,19 +95,19 @@ public class Game {
             user.doMistake();
         }
         if (isEnd && user.getDoneMistakes() == maxAttempts) {
-            return new Request.Defeat();
+            return new Defeat();
         }
         if (check && !isEnd) {
-            return new Request.Win();
+            return new Win();
         }
         if (check && isEnd) {
-            return new Request.SuccessfulRequest();
+            return new SuccessfulRequest();
         }
-        return new Request.FailedRequest();
+        return new FailedRequest();
     } // написал тесты
 
     public void checkRequestType(Request request) {
-        if (request instanceof Request.Win || request instanceof Request.Defeat) {
+        if (request instanceof Win || request instanceof Defeat) {
             System.exit(0);
         }
     } // простой функционал, можно не тестить
