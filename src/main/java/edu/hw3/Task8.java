@@ -12,6 +12,7 @@ public class Task8<T> implements Iterator<T> {
         this.list = list;
         this.current = list.size() - 1;
     }
+
     @Override
     public boolean hasNext() {
         return current >= 0;
