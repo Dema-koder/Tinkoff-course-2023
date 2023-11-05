@@ -1,17 +1,19 @@
 package edu.project2;
 
+
+@SuppressWarnings({"hideutilityclassconstructor", "magicnumber", "regexpsinglelinejava"})
 public class MazeRenderer {
-    public static void main(String[] args) {
-        Maze maze = new Maze(10, 10, new HuntAndKill());
-        render(maze);
-    }
     public static void render(Maze maze) {
-        for (var row: maze.getMaze()) {
-            for (var cell: row) {
+        for (var row : maze.getMaze()) {
+            for (var cell : row) {
                 if (cell.type() == Cell.Type.PASSAGE) {
-                    System.out.print('\u0068');
+                    System.out.print(' ');
                 } else {
-                    System.out.print('\u006f');
+                    if (cell.type() == Cell.Type.PATH) {
+                        System.out.print('#');
+                    } else {
+                        System.out.print('▉');
+                    }
                 }
             }
             System.out.println();
