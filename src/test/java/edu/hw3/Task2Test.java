@@ -6,16 +6,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Task2Test {
     @Test
-    void clusterizeTest() {
+    void firstTest() {
         Task2 task = new Task2();
         ArrayList<String>firstTest = new ArrayList<>();
         firstTest.add("()");
         firstTest.add("()");
         firstTest.add("()");
 
+        try {
+            assertEquals(firstTest, task.clusterize("()()()"));
+        } catch (Task2.IncorrectStringException e) {
+            assertThrows(Task2.IncorrectStringException.class, () -> {task.clusterize("()()()");});
+        }
+    }
+
+    @Test
+    void secondTest() {
+        Task2 task = new Task2();
         ArrayList<String>secondTest = new ArrayList<>();
         secondTest.add("((()))");
 
+        try {
+            assertEquals(secondTest, task.clusterize("((()))"));
+        } catch (Task2.IncorrectStringException e) {
+            assertThrows(Task2.IncorrectStringException.class, () -> {task.clusterize("((()))");});
+        }
+    }
+
+    @Test
+    void thirdTest() {
+        Task2 task = new Task2();
         ArrayList<String>thirdTest = new ArrayList<>();
         thirdTest.add("((()))");
         thirdTest.add("(())");
@@ -23,16 +43,6 @@ class Task2Test {
         thirdTest.add("()");
         thirdTest.add("(()())");
 
-        try {
-            assertEquals(firstTest, task.clusterize("()()()"));
-        } catch (Task2.IncorrectStringException e) {
-            assertThrows(Task2.IncorrectStringException.class, () -> {task.clusterize("()()()");});
-        }
-        try {
-            assertEquals(secondTest, task.clusterize("((()))"));
-        } catch (Task2.IncorrectStringException e) {
-            assertThrows(Task2.IncorrectStringException.class, () -> {task.clusterize("((()))");});
-        }
         try {
             assertEquals(thirdTest, task.clusterize("((()))(())()()(()()a"));
         } catch (Exception e) {

@@ -14,8 +14,9 @@ public class Task2 {
             set.add(str.charAt(i));
         }
         Set<Character> temp = new HashSet<>();
-        temp.add('(');
-        temp.add(')');
+        for (char c : new char[]{'(', ')'}) {
+            temp.add(c);
+        }
         if (temp.containsAll(set)) {
             return true;
         }
