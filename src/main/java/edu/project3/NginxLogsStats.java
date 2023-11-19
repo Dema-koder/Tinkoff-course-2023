@@ -11,8 +11,7 @@ import java.util.function.Predicate;
 import static edu.project3.LogsReader.readLogsFromFiles;
 import static edu.project3.LogsReader.readLogsFromUrl;
 
-@SuppressWarnings({"innerassignment", "modifiedcontrolvaria" +
-    "ble", "uncommentedmain", "regexpsinglelinejava",
+@SuppressWarnings({"innerassignment", "modifiedcontrolvariable", "uncommentedmain", "regexpsinglelinejava",
     "hideutilityclassconstructor"})
 public class NginxLogsStats {
     private final static String MARKDOWN = "markdown";
