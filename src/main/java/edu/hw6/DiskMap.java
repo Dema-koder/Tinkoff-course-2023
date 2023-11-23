@@ -2,6 +2,7 @@ package edu.hw6;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,10 +14,12 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("regexpsinglelinejava")
 public class DiskMap implements Map<String, String> {
+    private final BufferedReader reader;
     private String filePath;
 
-    public DiskMap(String filePath) {
+    public DiskMap(String filePath) throws FileNotFoundException {
         this.filePath = filePath;
+        reader = new BufferedReader(new FileReader(filePath));
     }
 
     @Override
@@ -89,7 +92,7 @@ public class DiskMap implements Map<String, String> {
 
     private Map<String, String> readMap() {
         Map<String, String> map = new HashMap<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(":");

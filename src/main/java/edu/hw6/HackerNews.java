@@ -13,9 +13,10 @@ import java.util.regex.Pattern;
 public class HackerNews {
     private static final String TOP_STORIES_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
     private static final String ITEM_URL = "https://hacker-news.firebaseio.com/v0/item/%d.json";
+    public static HttpClient client;
 
     public static long[] hackerNewsTopStories() {
-        HttpClient client = HttpClient.newHttpClient();
+        client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(TOP_STORIES_URL))
             .build();
@@ -36,7 +37,7 @@ public class HackerNews {
 
     public static String news(long id) {
         String itemUrl = String.format(ITEM_URL, id);
-        HttpClient client = HttpClient.newHttpClient();
+        client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(itemUrl))
             .build();

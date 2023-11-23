@@ -10,12 +10,7 @@ import java.util.regex.Pattern;
 
 public interface AbstractFilter extends DirectoryStream.Filter<Path> {
     default AbstractFilter and(AbstractFilter other) {
-        return new AbstractFilter() {
-            @Override
-            public boolean accept(Path entry) throws IOException {
-                return AbstractFilter.this.accept(entry) && other.accept(entry);
-            }
-        };
+        return entry -> AbstractFilter.this.accept(entry) && other.accept(entry);
     }
 
     AbstractFilter REGULAR_FILE = Files::isRegularFile;

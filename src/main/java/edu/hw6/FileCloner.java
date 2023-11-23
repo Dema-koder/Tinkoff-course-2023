@@ -8,15 +8,15 @@ import java.nio.file.StandardCopyOption;
 @SuppressWarnings({"hideutilityclassconstructor", "regexpsinglelinejava"})
 public class FileCloner {
     public static void cloneFile(Path path) {
-        String fileName = path.getFileName().toString();
-        String baseName = fileName.substring(0, fileName.lastIndexOf('.'));
-        String extension = fileName.substring(fileName.lastIndexOf('.'));
+        final String FILE_NAME = path.getFileName().toString();
+        final String BASE_NAME = FILE_NAME.substring(0, FILE_NAME.lastIndexOf('.'));
+        final String EXTENSION = FILE_NAME.substring(FILE_NAME.lastIndexOf('.'));
         int copyNumber = 1;
 
-        Path copyPath = path.resolveSibling(baseName + " - копия" + extension);
+        Path copyPath = path.resolveSibling(BASE_NAME + " - копия" + EXTENSION);
         while (Files.exists(copyPath)) {
             copyNumber++;
-            copyPath = path.resolveSibling(baseName + " - копия (" + copyNumber + ")" + extension);
+            copyPath = path.resolveSibling(BASE_NAME + " - копия (" + copyNumber + ")" + EXTENSION);
         }
 
         try {
