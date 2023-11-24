@@ -3,6 +3,7 @@ package edu.hw7;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicLong;
 
+@SuppressWarnings({"hideutilityclassconstructor", "magicnumber"})
 public class MultiThreadingPiCalculation {
     private static Thread[] threads;
 
@@ -38,7 +39,6 @@ public class MultiThreadingPiCalculation {
             try {
                 thread.join();
             } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
 

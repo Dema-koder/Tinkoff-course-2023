@@ -2,6 +2,7 @@ package edu.hw7;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+@SuppressWarnings("magicnumber")
 public class OneThreadPiCalculation {
 
     double piCalculation(long n) {
