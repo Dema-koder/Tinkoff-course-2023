@@ -6,9 +6,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @SuppressWarnings("hideutilityclassconstructor")
 public class Task1 {
-    public static AtomicInteger counter = new AtomicInteger(0);
+    private static int n;
 
-    public static int threadCounter(int n) {
+    public Task1(int n) {
+        this.n = n;
+    }
+
+    public static int threadCounter() {
+        AtomicInteger counter = new AtomicInteger(0);
         List<Thread> lst = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             lst.add(new Thread(() -> counter.incrementAndGet()));

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class CashingPersonDatabaseReadWriteLock implements PersonDatabase{
+public class CashingPersonDatabaseReadWriteLock implements PersonDatabase {
     private final Map<Integer, Person> personMap;
     public final Map<String, List<Integer>> nameIndex;
     private final Map<String, List<Integer>> addressIndex;
@@ -36,7 +36,7 @@ public class CashingPersonDatabaseReadWriteLock implements PersonDatabase{
     }
 
     @Override
-    public  void delete(int id) {
+    public void delete(int id) {
         lock.writeLock().lock();
         try {
             Person person = personMap.get(id);
